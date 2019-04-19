@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
-
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout"
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Layout</title>
 </head>
@@ -16,10 +16,10 @@
 				<td width="100">name</td>
 				<td width="100">price</td>
 			</tr>
-			<tr>
+			<tr th:each="product : ${productsList}">
 				<td width="100"><a href="onEditProduct">Edit Product</a></td>
-				<td width="100">xxx</td>
-				<td width="100">xxx</td>
+				<td width="100"><span th:text="${product.name}"></span></td>
+				<td width="100"><span th:text="${product.price}"></span></td>
 			</tr>
 		</table>
   	</div>

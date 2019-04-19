@@ -1,35 +1,51 @@
 package com.quotemaker.frontend.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+import com.quotemaker.frontend.model.Product;
+import com.quotemaker.frontend.proxies.ProductsServiceProxy;
+
+@Controller
 public class ProductsController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@Autowired
+	private ProductsServiceProxy productsServiceProxy;
 
-	  @RequestMapping(value="/products")
-	  public ModelAndView products() {
-		  ModelAndView modelAndView = new ModelAndView();
-		  modelAndView.setViewName("products");
-	      return modelAndView;
+	  @GetMapping("/products")
+	  public String products(Model m) {
+		  String response = productsServiceProxy.list("ASC");
+		  logger.info("-->"+response);
+//		  m.addAttribute("productsList",productsList);  
+	      return "products";
 	  }
 	  
-	  @RequestMapping(value="/onAddProduct")
+	  @GetMapping("/onAddProduct")
 	  public ModelAndView onAddProduct() {
-		  ModelAndView modelAndView = new ModelAndView();
-		  modelAndView.setViewName("addProduct");
-	      return modelAndView;
+		  Product product = new Product();
+		  ModelAndView mv = new ModelAndView("addProduct","product", product);
+	      return mv;
 	  }
 	  
-	  @RequestMapping(value="/onEditProduct")
-	  public ModelAndView onEditProduct() {
-		  ModelAndView modelAndView = new ModelAndView();
-		  modelAndView.setViewName("editProduct");
-	      return modelAndView;
+	  @PostMapping("/doAddProduct")
+	  public String doAddProduct(Product product) {
+		  productsServiceProxy.add(product);
+	      return "products";
+	  }
+	  
+	  @PostMapping("/onEditProduct")
+	  public String onEditProduct() {
+	      return "editProduct";
 	  }
 	
 	

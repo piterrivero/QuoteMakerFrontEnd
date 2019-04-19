@@ -8,10 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableFeignClients("com.quotemaker.frontend")
 @EnableDiscoveryClient
-public class InventoryServerApplication {
+public class QuotesMakerFrontEndServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(InventoryServerApplication.class, args);
+		SpringApplication.run(QuotesMakerFrontEndServerApplication.class, args);
 	}
 	
 }
