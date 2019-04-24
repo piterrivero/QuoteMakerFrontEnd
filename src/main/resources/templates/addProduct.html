@@ -2,8 +2,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout"
 	  xmlns:th="http://www.thymeleaf.org">
 	<head>
-	    <title>Add user</title>
-	    <meta charset="UTF-8">
+	    <title>Add product</title>
 	</head>
 	<body>
 	
@@ -11,12 +10,17 @@
 		<form action="#" th:action="@{/doAddProduct}" th:object="${product}" method="post">
 			<table>
 				<tr>
+					<td colspan="3" th:if="${existErrors}" th:text="${errorMsg}" style="color:red" />
+				</tr>
+				<tr>
 					<td>Name: </td>
-					<td><input id="name" th:field="*{name}" />
+					<td><input type="text" th:field="*{name}" />
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red" />
 				</tr>
 				<tr>
 					<td>Price: </td>
-					<td><input id="price" th:field="*{price}" />
+					<td><input type="text" th:field="*{price}" />
+					<td th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color:red" />
 				</tr>
 				<tr>
 					<td><input type="reset" value="Reset"></td>

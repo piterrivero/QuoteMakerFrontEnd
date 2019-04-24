@@ -1,12 +1,17 @@
 package com.quotemaker.frontend.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
 public class Product {
 
 	private long idProduct;
 	
+	@NotEmpty(message="Please enter the name")
 	private String name;
-	
-	private double price;
+
+	@Pattern(regexp="^\\d+(,\\d{3})*(\\.\\d{1,2})?$", message="Please enter a valid price")
+	private String price;
 	
 	public Product() {
 	}
@@ -27,12 +32,12 @@ public class Product {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
-	
+
 }

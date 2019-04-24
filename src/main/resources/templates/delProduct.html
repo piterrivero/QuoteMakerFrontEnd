@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout"
+	  xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>Add product</title>
+	</head>
+	<body>
+	
+	  <div layout:fragment="content">
+		<form action="#" th:action="@{/doDeleteProduct}" th:object="${product}" method="post">
+			<input type="hidden" th:field="*{idProduct}">
+			<input type="hidden" th:field="*{name}">
+			<input type="hidden" th:field="*{price}">
+			<div>Are you sure that you want to delete the product: <span th:text="${product.name}"></span></div>
+			<table>
+				<tr>
+					<td><button type="submit" name="action" value="yes">Yes</button></td>
+					<td><button type="submit" name="action" value="no">No</button></td>
+				</tr>
+			</table>
+		</form>
+	  </div>
+	</body>
+</html>

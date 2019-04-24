@@ -8,18 +8,23 @@
 <body>
   <div layout:fragment="content">
 	<div>
+		<div th:if="${successfulOperation}" th:text="${successfulMsg}" style="color:green"></div>
+		<div style="height: 20px;"></div>
 		<div><a href="onAddProduct">Add Product</a></div>
-		<div height="100px"></div>
-		<table border="1" widht="400">
+		<div style="height: 20px;"></div>
+		<table border="1">
 			<tr>
-				<td width="100"></td>
+				<td width="50"></td>
 				<td width="100">name</td>
 				<td width="100">price</td>
 			</tr>
 			<tr th:each="product : ${productsList}">
-				<td width="100"><a href="onEditProduct">Edit Product</a></td>
-				<td width="100"><span th:text="${product.name}"></span></td>
-				<td width="100"><span th:text="${product.price}"></span></td>
+				<td>
+					<a th:href="@{'/onEditProduct/' + ${product.idProduct}}"><img width="20" height="20" th:src="@{/img/editicon.png}"/></a>
+					<a  th:href="@{'/onDeleteProduct/' + ${product.idProduct}}"><img width="20" height="20" th:src="@{/img/deleteicon.png}"/></a>
+				</td>
+				<td><span th:text="${product.name}"></span></td>
+				<td><span th:text="${product.price}"></span></td>
 			</tr>
 		</table>
   	</div>
