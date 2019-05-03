@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout"
+	  xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<title>Layout</title>
-</head>
+	<head>
+	    <title>Edit product</title>
+	</head>
 
 <body>
   <div layout:fragment="content">
-	<form name="quoteForm">
-		<table>
-			<tr>
-				<td>Name: </td>
-				<td><input type="text" name="name"></td>
-			</tr>
-			<tr>
-				<td>Price: </td>
-				<td><input type="text" name="price"></td>
-			</tr>
-			<tr>
-				<td><input type="reset" value="Reset"></td>
-				<td><input type="submit" value="Save"></td>
-			</tr>
-		</table>
-	</form>
-  </div>
+		<form action="#" th:action="@{/doEditQuote}" th:object="${quote}" method="post">
+			<input type="hidden" th:field="*{idQuote}">
+			<table>
+				<tr>
+					<td colspan="3" th:if="${existErrors}" th:text="${errorMsg}" style="color:red" />
+				</tr>
+				<tr>
+					<td>Customer Name: </td>
+					<td><input type="text" th:field="*{customerName}" />
+					<td th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}" style="color:red" />
+				</tr>
+				<tr>
+					<td>Customer Fiscal Number: </td>
+					<td><input type="text" th:field="*{customerFiscalNumber}" />
+					<td th:if="${#fields.hasErrors('customerFiscalNumber')}" th:errors="*{customerFiscalNumber}" style="color:red" />
+				</tr>
+				<tr>
+					<td><input type="reset" value="Reset"></td>
+					<td><input type="submit" value="Save"></td>
+				</tr>
+			</table>
+		</form>
+	  </div>
 </body>
 </html>

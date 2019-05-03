@@ -3,31 +3,31 @@ package com.quotemaker.frontend.response;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.quotemaker.frontend.model.Product;
+import com.quotemaker.frontend.model.Quote;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ProductGeneralResponse {
+public class QuotesGeneralResponse {
 
-	private Product product;
-	private List<Product> productsList;
+	private Quote quote;
+	private List<Quote> quotesList;
 	private int errorCode;
 	private String errorMsg;
 	private String responsePort;
 	
-	public ProductGeneralResponse() {
+	public QuotesGeneralResponse() {
 	}
 	
-	public Product getProduct() {
-		return product;
+	public Quote getQuote() {
+		return quote;
 	}
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setQuote(Quote quote) {
+		this.quote = quote;
 	}
-	public List<Product> getProductsList() {
-		return productsList;
+	public List<Quote> getQuotesList() {
+		return quotesList;
 	}
-	public void setProductsList(List<Product> productsList) {
-		this.productsList = productsList;
+	public void setQuotesList(List<Quote> quotesList) {
+		this.quotesList = quotesList;
 	}
 	public int getErrorCode() {
 		return errorCode;

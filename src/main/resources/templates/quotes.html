@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
-
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout"
+	  xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Layout</title>
 </head>
@@ -8,20 +8,23 @@
 <body>
   <div layout:fragment="content">
 	<div>
+		<div th:if="${successfulOperation}" th:text="${successfulMsg}" style="color:green"></div>
+		<div style="height: 20px;"></div>
 		<div><a href="onAddQuote">Add Quote</a></div>
-		<div height="100px"></div>
-		<table border="1" widht="400">
+		<div style="height: 20px;"></div>
+		<table border="1">
 			<tr>
-				<td width="100"></td>
-				<td width="100">customerName</td>
-				<td width="200">customerFiscalNumber</td>
-				<td width="200">total</td>
+				<td width="50"></td>
+				<td width="100">Customer name</td>
+				<td width="100">Customer fiscal number</td>
 			</tr>
-			<tr>
-				<td width="100"><a href="onEditQuote">Edit Quote</a></td>
-				<td width="100">xxx</td>
-				<td width="200">xxx</td>
-				<td width="200">xxx</td>
+			<tr th:each="quote : ${quotesList}">
+				<td>
+					<a th:href="@{'/onEditQuote/' + ${quote.idQuote}}"><img width="20" height="20" th:src="@{/img/editicon.png}"/></a>
+					<a  th:href="@{'/onDeleteQuote/' + ${quote.idQuote}}"><img width="20" height="20" th:src="@{/img/deleteicon.png}"/></a>
+				</td>
+				<td><span th:text="${quote.customerName}"></span></td>
+				<td><span th:text="${quote.customerFiscalNumber}"></span></td>
 			</tr>
 		</table>
   	</div>

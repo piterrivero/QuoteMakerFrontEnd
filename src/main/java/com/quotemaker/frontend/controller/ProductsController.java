@@ -25,10 +25,10 @@ import feign.FeignException;
 @Controller
 public class ProductsController {
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	@Autowired
-	private ProductsServiceProxy productsServiceProxy;
+	  private Logger logger = LoggerFactory.getLogger(this.getClass());
+		
+	  @Autowired
+	  private ProductsServiceProxy productsServiceProxy;
 
 	
 	  @GetMapping("/products")

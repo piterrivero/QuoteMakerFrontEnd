@@ -1,28 +1,33 @@
-<!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
-
-<head>
-	<title>Layout</title>
-</head>
-
-<body>
-  <div layout:fragment="content">
-	<form name="quoteForm">
-		<table>
-			<tr>
-				<td>Name: </td>
-				<td><input type="text" name="name"></td>
-			</tr>
-			<tr>
-				<td>Price: </td>
-				<td><input type="text" name="price"></td>
-			</tr>
-			<tr>
-				<td><input type="reset" value="Reset"></td>
-				<td><input type="submit" value="Save"></td>
-			</tr>
-		</table>
-	</form>
-  </div>
-</body>
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout"
+	  xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>Add quote</title>
+	</head>
+	<body>
+	
+	  <div layout:fragment="content">
+		<form action="#" th:action="@{/doAddQuote}" th:object="${quote}" method="post">
+			<table>
+				<tr>
+					<td colspan="3" th:if="${existErrors}" th:text="${errorMsg}" style="color:red" />
+				</tr>
+				<tr>
+					<td>Customer Name: </td>
+					<td><input type="text" th:field="*{customerName}" />
+					<td th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}" style="color:red" />
+				</tr>
+				<tr>
+					<td>Customer Fiscal Number: </td>
+					<td><input type="text" th:field="*{customerFiscalNumber}" />
+					<td th:if="${#fields.hasErrors('customerFiscalNumber')}" th:errors="*{customerFiscalNumber}" style="color:red" />
+				</tr>
+				<tr>
+					<td><input type="reset" value="Reset"></td>
+					<td><input type="submit" value="Save"></td>
+				</tr>
+			</table>
+		</form>
+	  </div>
+	</body>
 </html>
