@@ -24,6 +24,10 @@ public class Quote {
 	
 	private double total;
 	
+	private String detailProductName;
+	
+	private int detailProductQuantity;
+	
 	public Quote() {
 	}
 	
@@ -90,5 +94,20 @@ public class Quote {
 	public void setTotal(double total) {
 		this.total = total;
 	}
-	
+
+	public String getDetailProductName() {
+		return detailProductName;
+	}
+
+	public void setDetailProductName(String detailProductName) {
+		this.detailProductName = detailProductName;
+	}
+
+	public int getDetailProductQuantity() {
+		return detailProductQuantity;
+	}
+
+	public void setDetailProductQuantity(int detailProductQuantity) {
+		this.detailProductQuantity = detailProductQuantity;
+	}
 }

@@ -23,8 +23,10 @@
 					<td th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color:red" />
 				</tr>
 				<tr>
-					<td><input type="reset" value="Reset"></td>
-					<td><input type="submit" value="Save"></td>
+					<td colspan="3">
+						<input type="reset" value="Reset">
+					    <input type="submit" value="Save">
+					</td>
 				</tr>
 			</table>
 		</form>

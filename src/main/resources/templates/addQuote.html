@@ -8,7 +8,7 @@
 	
 	  <div layout:fragment="content">
 		<form action="#" th:action="@{/doAddQuote}" th:object="${quote}" method="post">
-			<table>
+			<table border="1">
 				<tr>
 					<td colspan="3" th:if="${existErrors}" th:text="${errorMsg}" style="color:red" />
 				</tr>
@@ -22,9 +22,51 @@
 					<td><input type="text" th:field="*{customerFiscalNumber}" />
 					<td th:if="${#fields.hasErrors('customerFiscalNumber')}" th:errors="*{customerFiscalNumber}" style="color:red" />
 				</tr>
+				
 				<tr>
-					<td><input type="reset" value="Reset"></td>
-					<td><input type="submit" value="Save"></td>
+					<td colspan="3">
+						<table>
+							<tr>
+								<td>Product</td>
+								<td>Quantity</td>
+							</tr>
+							<tr th:each="product : quotes">
+								<td><span th:text="${product.product}"></span></td>
+								<td><span th:text="${product.quantity}"></span></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="3">
+						<table>
+							<tr>
+								<td>Product</td>
+								<td>Quantity</td>
+							</tr>
+							<tr>
+								<td>
+									<select th:field="*{detailProductName}">
+									    <option th:each="product : ${productsList}"  th:value="${product.name}" th:text="${product.name}" />
+									</select>
+								</td>
+								<td>
+									<td><input type="text" th:field="*{detailProductQuantity}" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="submit" value="Save row"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="3">
+						<input type="reset" value="Reset">
+					    <input type="submit" value="Save">
+					</td>
 				</tr>
 			</table>
 		</form>
